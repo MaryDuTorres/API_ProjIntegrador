@@ -31,3 +31,16 @@ exports.login = async (req, res) => {
         res.status(500).json({ mensagem: 'Erro no login', erro: err.message });
     }
 };
+
+exports.editarConta = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const contaAtualizada = await Conta.findByIdAndUpdate(id, req.body, { new: true });
+    if (!contaAtualizada) {
+      return res.status(404).json({ erro: 'Conta não encontrada' });
+    }
+    res.json(contaAtualizada);
+  } catch (error) {
+    res.status(400).json({ erro: error.message });
+  }
+};
