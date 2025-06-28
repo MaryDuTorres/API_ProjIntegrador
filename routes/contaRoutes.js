@@ -4,6 +4,6 @@ const contaController = require('../controllers/contaController');
 
 router.post('/registrar', contaController.registrar); 
 router.post('/login', contaController.login); 
-router.put('/editarConta', contaController.editarConta);
+router.put('/editarConta:id', contaController.editarConta);
 
 module.exports = router;
