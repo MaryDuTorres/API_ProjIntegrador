@@ -44,3 +44,16 @@ exports.editarConta = async (req, res) => {
     res.status(400).json({ erro: error.message });
   }
 };
+
+exports.verConta = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const conta = await Usuario.findById(id).select('-senha'); // Oculta a senha na resposta
+    if (!conta) {
+      return res.status(404).json({ erro: 'Conta não encontrada.' });
+    }
+    res.json(conta);
+  } catch (error) {
+    res.status(400).json({ erro: 'Erro ao buscar conta.' });
+  }
+};
