@@ -35,7 +35,7 @@ exports.login = async (req, res) => {
 exports.editarConta = async (req, res) => {
   try {
     const { id } = req.params;
-    const contaAtualizada = await Conta.findByIdAndUpdate(id, req.body, { new: true });
+    const contaAtualizada = await Usuario.findByIdAndUpdate(id, req.body, { new: true });
     if (!contaAtualizada) {
       return res.status(404).json({ erro: 'Conta não encontrada' });
     }
